@@ -1151,6 +1151,10 @@ export class PacketHandler {
         timestamp: Date.now(),
       };
 
+      // 设置客户端的公网地址信息（用于路由表）
+      networkInfo.public_ip = this.parseIpv4(addr.ip || "0.0.0.0");
+      networkInfo.public_port = addr.port || 0;
+
       // 创建注册响应
       const response = this.createRegistrationResponse(
         virtualIp,
